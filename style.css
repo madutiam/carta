@@ -1,0 +1,93 @@
+:root {
+  --bg: url('neutroGr.jpg');
+  --transition: 600ms;
+}
+
+/* Reset simples */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #fff;
+}
+
+/* Fundo */
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--bg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+}
+
+/* Container central */
+.center-wrap {
+  width: min(920px, 92vw);
+  max-width: 920px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  pointer-events: none;
+}
+
+/* Cartinha */
+.cartinha {
+  width: min(420px, 70%);
+  max-height: 80%;
+  object-fit: contain;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform var(--transition) ease, opacity var(--transition) ease;
+  user-select: none;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+}
+.cartinha:active { transform: scale(.98); }
+.cartinha.hidden {
+  opacity: 0;
+  transform: translateY(-30px) scale(.98);
+  pointer-events: none;
+}
+
+/* Poema */
+.poema {
+  position: absolute;
+  width: min(720px, 90%);
+  height: auto;
+  max-height: 90%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(20px) scale(.98);
+  transition: opacity var(--transition) ease, transform var(--transition) ease;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.22));
+}
+.poema.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Dica de interação */
+.hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(30,30,30,0.85);
+  background: rgba(255,255,255,0.65);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+/* Responsividade */
+@media (max-width:600px){
+  .cartinha { width: 84vw; }
+  .poema { width: 92vw; }
+}
